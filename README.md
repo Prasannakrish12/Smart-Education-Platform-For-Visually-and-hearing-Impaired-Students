@@ -4,13 +4,17 @@ An inclusive educational web platform built using Python and Flask that offers c
 
 ## 🔧 Project Structure
 
-Smart edu/
+<pre lang="markdown">
+
+## 🔧 Project Structure
+
+```
+Smart-Edu/
+├── __pycache__/                    # Compiled Python files (ignore in Git)
+│   ├── hearing.cpython-<...>.pyc
+│   └── visually.cpython-<...>.pyc
 │
-├── pycache/
-│   ├── hearing.cpython-<…>.pyc
-│   └── visually.cpython-<…>.pyc
-│
-├── templates/
+├── templates/                      # HTML templates for web pages
 │   ├── about.html
 │   ├── accessibility.html
 │   ├── contact.html
@@ -20,15 +24,18 @@ Smart edu/
 │   ├── profile.html
 │   └── visual.html
 │
-├── app.py                   # Flask application entry point
-├── main.py                  # Backend controller logic
-├── hearing.py               # Logic for hearing-impaired user interaction
-├── visually.py              # Logic for visually-impaired user interaction
-│
-├── hearing.json             # JSON data for hearing-impaired content
-├── visual.json              # JSON data for visually-impaired content
-│
-└── README.md                # Project documentation
+├── app.py                          # Flask app entry point
+├── main.py                         # Main backend logic
+├── hearing.py                      # Logic for hearing-impaired users
+├── visually.py                     # Logic for visually-impaired users
+├── hearing.json                    # JSON data for hearing-impaired users
+├── visual.json                     # JSON data for visually-impaired users
+├── LICENSE.txt                     # License file
+└── README.md                       # Project documentation
+```
+
+</pre>
+
 
 
 ## 🌟 Features
