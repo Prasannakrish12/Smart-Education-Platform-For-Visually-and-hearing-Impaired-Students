@@ -1,0 +1,71 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn</title>
+    <style>
+        :root { --bg-start: #0A1D37; --bg-end: #00C4CC; --text: #FFF; --card-bg: rgba(255, 255, 255, 0.1); --shadow: 0 8px 20px rgba(0, 0, 0, 0.2); --accent: #00D1B2; }
+        body { font-family: 'SF Pro', Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, var(--bg-start), var(--bg-end)); height: 100vh; overflow-x: hidden; }
+        .nav { padding: 15px 40px; text-align: right; background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(5px); position: fixed; width: 100%; z-index: 100; }
+        .nav a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 1.2rem; transition: color 0.3s, transform 0.3s; }
+        .nav a:hover { color: var(--accent); transform: scale(1.1); }
+        .header { text-align: center; padding: 120px 20px 60px; animation: fadeIn 1.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .header h1 { font-size: 2.8rem; color: var(--text); margin: 0; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+        .header h2 { font-size: 4.5rem; color: var(--text); margin: 15px 0; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); animation: slideDown 1s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .header p { font-size: 1.3rem; color: #E0E7FF; max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
+        .buttons { text-align: center; margin-bottom: 60px; }
+        .buttons button { padding: 15px 30px; margin: 0 15px; font-size: 1.2rem; border: none; border-radius: 10px; background: var(--card-bg); color: var(--text); backdrop-filter: blur(10px); cursor: pointer; transition: transform 0.3s, background 0.3s, box-shadow 0.3s; }
+        .buttons button:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); box-shadow: 0 0 15px var(--accent); }
+        .why-section { padding: 60px 20px; text-align: center; background: rgba(0, 0, 0, 0.1); }
+        .why-section h3 { font-size: 2.5rem; color: var(--text); margin-bottom: 40px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); animation: fadeUp 1s ease-out 0.5s; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .cards { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .card { background: var(--card-bg); backdrop-filter: blur(10px); padding: 25px; width: 300px; border-radius: 15px; box-shadow: var(--shadow); transition: transform 0.4s, box-shadow 0.4s; }
+        .card:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(0, 209, 178, 0.5); }
+        .card h4 { font-size: 1.8rem; color: var(--text); margin-bottom: 15px; }
+        .card p { font-size: 1.1rem; color: #E0E7FF; line-height: 1.5; }
+        @media (max-width: 800px) { .header h2 { font-size: 3rem; } .buttons { flex-direction: column; } .buttons button { margin: 10px 0; } .card { width: 100%; } }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="/visually">Visually Impaired</a>
+        <a href="/hearing">Hearing Impaired</a>
+        <a href="/courses">Courses</a>
+        <a href="/profile">Profile</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="header">
+        <h1>AccessLearn</h1>
+        <h2>Education for Every Ability</h2>
+        <p>A modern, inclusive learning platform built for visually and hearing impaired students. Bridging accessibility with cutting-edge technology and AI-driven solutions.</p>
+        <div class="buttons">
+            <button onclick="window.location.href='/courses'">Browse Courses</button>
+            <button onclick="window.location.href='/profile'">My Profile</button>
+
+        </div>
+    </div>
+    <div class="why-section">
+        <h3>Why AccessLearn?</h3>
+        <div class="cards">
+            <div class="card">
+                <h4>Text-to-Speech</h4>
+                <p>Our advanced AI reads aloud complex content for visually impaired learners, enhancing comprehension with natural voice modulation.</p>
+            </div>
+            <div class="card">
+                <h4>Sign Language Avatars</h4>
+                <p>Animated 3D avatars translate text into dynamic sign language, supporting hearing-impaired students with real-time interaction.</p>
+            </div>
+            <div class="card">
+                <h4>Seamless Navigation</h4>
+                <p>Intuitive design with voice commands and touch-friendly interfaces, crafted for accessibility and user-first experience.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

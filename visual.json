@@ -1,0 +1,180 @@
+{
+    "Python": [
+        {
+            "title": "Introduction to Python",
+            "summary": "Python is a popular programming language. Although it is a general-purpose language, it is used in various areas of applications such as Machine Learning, Artificial Intelligence, web development, IoT, and more. This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language."
+        },
+        {
+            "title": "What is Python?",
+            "summary": "Python is a very popular general-purpose interpreted, interactive, object-oriented, and high-level programming language. Python is dynamically-typed and garbage-collected programming language. Python supports multiple programming paradigms, including Procedural, Object Oriented and Functional programming language. Python design philosophy emphasizes code readability with the use of significant indentation."
+        },
+        {
+            "title": "Characteristics of Python",
+            "summary": "Following are important characteristics of Python Programming − It supports functional and structured programming methods as well as OOP. It can be used as a scripting language or can be compiled to byte-code for building large applications. It provides very high-level dynamic data types and supports dynamic type checking. It supports automatic garbage collection. It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java."
+        },
+        {
+            "title": "Applications of Python",
+            "summary": "Python is a general purpose programming language known for its readability. It is widely applied in various fields. In Data Science, Python libraries like Numpy, Pandas, and Matplotlib are used for data analysis and visualization. Python frameworks like Django, and Pyramid, make the development and deployment of Web Applications easy. This programming language also extends its applications to computer vision and image processing. It is also favored in many tasks like Automation, Job Scheduling, GUI development, etc."
+        },
+        {
+            "title": "Python Variables",
+            "summary": "Variables are containers for storing data values. Python has no command for declaring a variable. A variable is created the moment you first assign a value to it. Variables do not need to be declared with any particular type, and can even change type after they have been set.",
+            "example": "x = 5\ny = 'John'\nprint(x)\nprint(y)"
+        },
+        {
+            "title": "Casting",
+            "summary": "If you want to specify the data type of a variable, this can be done with casting.",
+            "example": "x = str(3)    # x will be '3'\ny = int(3)    # y will be 3\nz = float(3)  # z will be 3.0"
+        },
+        {
+            "title": "Get the Type",
+            "summary": "You can get the data type of a variable with the type() function. It helps identify whether a value is an integer, string, float, list, tuple, dictionary, etc.",
+            "example": "x = 5\ny = 'John'\nprint(type(x))\nprint(type(y))"
+        },
+        {
+            "title": "Built-in Data Types",
+            "summary": "Variables can store data of different types, and different types can do different things. Python has the following data types built-in by default, in these categories: Text Type: str, Numeric Types: int, float, complex, Sequence Types: list, tuple, range, Mapping Type: dict, Set Types: set, frozenset, Boolean Type: bool, Binary Types: bytes, bytearray, memoryview, None Type: NoneType"
+        },
+        {
+            "title": "Python Numbers",
+            "summary": "There are three numeric types in Python: int, float, complex. 1. Integers (int) – Whole numbers without decimals (e.g., 10, -5). 2. Floating-Point Numbers (float) – Numbers with decimals (e.g., 3.14, -2.5). 3. Complex Numbers (complex) – Numbers with a real and imaginary part (e.g., 3 + 4j)."
+        },
+        {
+            "title": "Type Conversion",
+            "summary": "You can convert from one type to another with the int(), float(), and complex() methods. Implicit Conversion (Automatic) – Python automatically converts smaller data types to larger ones when needed. Explicit Conversion (Type Casting) – Manually converting types using functions like int(), float(), str(), list(), etc.",
+            "example": "num = 10\nresult = num + 2.5\nprint(result)\n\na = '100'\nb = int(a)\nprint(b + 50)"
+        },
+        {
+            "title": "Strings",
+            "summary": "Strings in python are surrounded by either single quotation marks, or double quotation marks. 'hello' is the same as \"hello\".",
+            "example": "print('Hello')\nprint(\"Hello\")"
+        },
+        {
+            "title": "Quotes Inside Quotes",
+            "summary": "You can use quotes inside a string, as long as they don't match the quotes surrounding the string:",
+            "example": "print(\"It's alright\")\nprint(\"He is called 'Johnny'\")\nprint('He is called \"Johnny\"')"
+        },
+        {
+            "title": "List",
+            "summary": "Lists are used to store multiple items in a single variable. Lists are one of 4 built-in data types in Python used to store collections of data, the other 3 are Tuple, Set, and Dictionary, all with different qualities and usage. Lists are created using square brackets. List items are ordered, changeable, and allow duplicate values. List items are indexed, the first item has index [0], the second item has index [1] etc. If you add new items to a list, the new items will be placed at the end of the list. The list is changeable, meaning that we can change, add, and remove items in a list after it has been created. Do Operations link add(), remove(), sort(). copy(), join().",
+            "example": "thislist = ['apple', 'banana', 'cherry']\nprint(thislist)"
+        },
+        {
+            "title": "Tuple",
+            "summary": "Tuples are used to store multiple items in a single variable. Tuple is one of 4 built-in data types in Python used to store collections of data, the other 3 are List, Set, and Dictionary, all with different qualities and usage. A tuple is a collection which is ordered and unchangeable. Tuples are written with round brackets. Tuples are unchangeable, meaning that we cannot change, add or remove items after the tuple has been created. To create a tuple with only one item, you have to add a comma after the item, otherwise Python will not recognize it as a tuple.",
+            "example": "thistuple = ('apple', 'banana', 'cherry')\nprint(thistuple)\n\nthistuple = ('apple',)\nprint(type(thistuple))"
+        },
+        {
+            "title": "Dictionary",
+            "summary": "Dictionaries are used to store data values in key:value pairs. A dictionary is a collection which is ordered*, changeable and do not allow duplicates. When we say that dictionaries are ordered, it means that the items have a defined order, and that order will not change. Dictionaries are changeable, meaning that we can change, add or remove items after the dictionary has been created. Dictionaries cannot have two items with the same key:",
+            "example": "thisdict = {\n    'brand': 'Ford',\n    'model': 'Mustang',\n    'year': 1964\n}\nprint(thisdict)"
+        },
+        {
+            "title": "Functions",
+            "summary": "A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. The code block within every function starts with a colon (:) and is indented. A function can return data as a result. To call a function, use the function name followed by parenthesis:",
+            "example": "def my_function():\n    print('Hello from a function')\n\nmy_function()"
+        }
+    ],
+      
+        "Java": [
+            {
+                "title": "Introduction to Java",
+                "summary": "Java is a high-level, object-oriented programming language launched in 1995 by Sun Microsystems. It’s platform-independent due to the Java Virtual Machine (JVM). It’s widely used for web, mobile, and enterprise applications."
+            },
+            {
+                "title": "Classes and Objects",
+                "summary": "Classes are blueprints for creating objects in Java’s OOP model. Objects are instances of classes with state and behavior. This enables encapsulation and modularity.",
+                "example": "class Person {\n    String name;\n    int age;\n    Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\nPerson p = new Person(\"Alice\", 25);"
+            },
+            {
+                "title": "Data Types",
+                "summary": "Java supports primitive types like int, float, and boolean for basic data. Non-primitive types include String and arrays for complex data. Type safety is enforced at compile time.",
+                "example": "int x = 42;\nfloat pi = 3.14f;\nboolean flag = false;\nString text = \"Hello\";"
+            },
+            {
+                "title": "Control Statements",
+                "summary": "Control statements like if-else manage decision-making in Java programs. Loops (for, while) handle repetition tasks efficiently. Switch statements offer multi-way branching.",
+                "example": "int score = 85;\nif (score > 60) {\n    System.out.println(\"Pass\");\n}\nfor (int i = 0; i < 3; i++) {\n    System.out.println(i);\n}"
+            },
+            {
+                "title": "Methods and Functions",
+                "summary": "Methods are reusable blocks of code in Java classes. They can take parameters and return values for flexibility. This promotes code organization and reduces redundancy.",
+                "example": "int multiply(int a, int b) {\n    return a * b;\n}\nint result = multiply(4, 5); // returns 20"
+            },
+            {
+                "title": "Exception Handling",
+                "summary": "Java uses try-catch blocks to manage runtime errors gracefully. Exceptions like ArithmeticException can be caught and handled. The finally block ensures cleanup code runs.",
+                "example": "try {\n    int x = 5 / 0;\n} catch (Exception e) {\n    System.out.println(\"Error: \" + e);\n}"
+            },
+            {
+                "title": "Multithreading",
+                "summary": "Multithreading allows concurrent task execution in Java. Threads can be created by extending Thread or implementing Runnable. It’s key for performance in complex apps.",
+                "example": "class MyTask extends Thread {\n    public void run() {\n        System.out.println(\"Task running\");\n    }\n}\nMyTask t = new MyTask();\nt.start();"
+            },
+            {
+                "title": "Arrays",
+                "summary": "Arrays store multiple elements of the same type in Java. They have a fixed size set at creation time. Useful for handling lists or collections of data.",
+                "example": "int[] numbers = {1, 2, 3, 4};\nSystem.out.println(numbers[0]); // prints 1"
+            },
+            {
+                "title": "Strings",
+                "summary": "Strings in Java are immutable objects for text manipulation. The String class offers methods like substring() and length(). StringBuilder is used for mutable strings.",
+                "example": "String greet = \"Hello\";\nSystem.out.println(greet.length()); // prints 5"
+            },
+            {
+                "title": "Inheritance",
+                "summary": "Inheritance allows a class to inherit properties from another class. It supports code reuse and establishes a parent-child relationship. The ‘extends’ keyword is used.",
+                "example": "class Animal {\n    void eat() {}\n}\nclass Dog extends Animal {\n    void bark() {}\n}"
+            },
+            {
+                "title": "Polymorphism",
+                "summary": "Polymorphism enables methods to behave differently based on object type. It’s achieved via method overriding or overloading. This enhances flexibility in code design.",
+                "example": "class Shape {\n    void draw() {}\n}\nclass Circle extends Shape {\n    void draw() { System.out.println(\"Circle\"); }\n}"
+            },
+            {
+                "title": "Encapsulation",
+                "summary": "Encapsulation hides data using private fields and public methods. It protects object integrity and enables controlled access. Getters and setters are common tools.",
+                "example": "class Student {\n    private String name;\n    public String getName() { return name; }\n    public void setName(String n) { name = n; }\n}"
+            },
+            {
+                "title": "Abstraction",
+                "summary": "Abstraction hides complex implementation details from users. Abstract classes and interfaces define contracts without specifics. It simplifies code interaction.",
+                "example": "abstract class Vehicle {\n    abstract void move();\n}\nclass Car extends Vehicle {\n    void move() { System.out.println(\"Driving\"); }\n}"
+            },
+            {
+                "title": "Interfaces",
+                "summary": "Interfaces specify methods that classes must implement. They enable multiple inheritance-like behavior in Java. All methods are abstract by default.",
+                "example": "interface Flyable {\n    void fly();\n}\nclass Bird implements Flyable {\n    public void fly() { System.out.println(\"Flying\"); }\n}"
+            },
+            {
+                "title": "Packages",
+                "summary": "Packages organize Java classes into namespaces for better structure. They prevent naming conflicts and improve code maintainability. Import statements access them.",
+                "example": "package com.example;\npublic class MyClass {\n    // class code\n}"
+            },
+            {
+                "title": "File I/O",
+                "summary": "Java provides classes like FileReader for file operations. Input/output streams handle reading and writing data. It’s essential for persistent storage tasks.",
+                "example": "import java.io.*;\nFileWriter fw = new FileWriter(\"file.txt\");\nfw.write(\"Hello\");\nfw.close();"
+            },
+            {
+                "title": "Collections Framework",
+                "summary": "The Collections Framework offers data structures like List and Map. It provides dynamic sizing and utility methods. Ideal for managing groups of objects.",
+                "example": "import java.util.*;\nList<String> list = new ArrayList<>();\nlist.add(\"Apple\");"
+            },
+            {
+                "title": "Generics",
+                "summary": "Generics enable type-safe collections and methods in Java. They reduce runtime errors by enforcing type checks at compile time. Introduced in Java 5.",
+                "example": "class Box<T> {\n    T item;\n    void setItem(T item) { this.item = item; }\n}"
+            },
+            {
+                "title": "Lambda Expressions",
+                "summary": "Lambda expressions, added in Java 8, simplify functional programming. They provide concise syntax for implementing interfaces. Often used with streams.",
+                "example": "interface MathOp {\n    int operate(int a, int b);\n}\nMathOp add = (a, b) -> a + b;"
+            },
+            {
+                "title": "Streams API",
+                "summary": "Streams API, introduced in Java 8, processes collections efficiently. It supports functional-style operations like filter and map. Great for bulk data operations.",
+                "example": "import java.util.*;\nList<Integer> nums = Arrays.asList(1, 2, 3);\nnums.stream().filter(n -> n > 1).forEach(System.out::println);"
+            }
+        ]
+    }

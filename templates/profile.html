@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Profile</title>
+    <style>
+        :root { --bg: #1A2A44; --text: #FFF; --accent: #00D1B2; --card: rgba(255, 255, 255, 0.1); --shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
+        body { font-family: 'SF Pro', Arial, sans-serif; background: linear-gradient(135deg, #1A2A44, #0A1A33); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background: var(--card); padding: 40px; border-radius: 15px; box-shadow: var(--shadow); max-width: 500px; width: 90%; animation: fadeIn 1.5s ease-out; position: relative; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        h1 { font-size: 2.5rem; color: var(--accent); text-align: center; margin-bottom: 30px; }
+        form { display: flex; flex-direction: column; gap: 20px; }
+        input { padding: 12px; border: none; border-radius: 5px; background: rgba(255, 255, 255, 0.2); color: var(--text); font-size: 1.1rem; }
+        .submit-button { 
+            padding: 12px; 
+            background: var(--accent); 
+            border: none; 
+            border-radius: 5px; 
+            color: var(--text); 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            transition: background 0.3s;
+        }
+        .submit-button:hover { background: #00b39a; }
+        .success-message { 
+            display: none; 
+            text-align: center; 
+            color: #00D1B2; 
+            font-size: 1.2rem; 
+            margin-top: 20px; 
+            animation: fadeIn 1s ease-out; 
+        }
+        .success-message.show { display: block; }
+        .details-section { 
+            display: none; 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 1.1rem; 
+            color: var(--text); 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 15px; 
+            border-radius: 5px; 
+        }
+        .details-section.show { display: block; }
+        .restart-button { 
+            margin-top: 20px; 
+            padding: 10px 20px; 
+            background: var(--accent); 
+            border: none; 
+            border-radius: 5px; 
+            color: var(--text); 
+            font-size: 1rem; 
+            cursor: pointer; 
+        }
+        .restart-button:hover { background: #00b39a; }
+        @media (max-width: 600px) { .container { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AccessLearn - Profile</h1>
+        <form id="profileForm">
+            <input type="text" id="name" name="name" placeholder="Full Name" required>
+            <input type="email" id="email" name="email" placeholder="Email Address" required>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+            <button type="button" class="submit-button" id="submitButton">Submit</button>
+        </form>
+        <div class="success-message" id="successMessage">Enrolled successfully...</div>
+        <div class="details-section" id="detailsSection">
+            <h3>Your Details</h3>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+            <button class="restart-button" id="restartButton">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.continuous = false;
+
+        const fields = [
+            { id: 'name', prompt: 'Please say your full name.' },
+            { id: 'email', prompt: 'Please say your email address.' },
+            { id: 'phone', prompt: 'Please say your phone number.' }
+        ];
+        let currentFieldIndex = 0;
+        let awaitingSaveCommand = false;
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+            utterance.onend = () => {
+                recognition.start(); // Start listening after speaking
+            };
+        }
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.trim().toLowerCase();
+            
+            if (awaitingSaveCommand) {
+                if (transcript === 'save profile') {
+                    submitForm();
+                } else {
+                    speak('Please say "save profile" to save your details.');
+                }
+                return;
+            }
+
+            const currentField = fields[currentFieldIndex];
+            document.getElementById(currentField.id).value = transcript;
+
+            currentFieldIndex++;
+            if (currentFieldIndex < fields.length) {
+                speak(fields[currentFieldIndex].prompt);
+            } else {
+                awaitingSaveCommand = true;
+                speak('All details collected. Say "save profile" or click the submit button to save your information.');
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            speak('Sorry, I didn’t catch that. Please try again.');
+            recognition.start(); // Retry
+        };
+
+        recognition.onend = () => {
+            if (currentFieldIndex >= fields.length && !awaitingSaveCommand) {
+                recognition.stop();
+            }
+        };
+
+        // Start the process
+        window.onload = () => {
+            speak(fields[0].prompt);
+        };
+
+        // Submit to Google Form and display details
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Your Google Form submission URL
+            const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfUZskTLTH4VAsOUsSD7T1FLpMZrBQUIfL3ozTgiL-HAD2l6w/formResponse';
+            const formData = new FormData();
+            formData.append('entry.1087795436', name);   // Full Name
+            formData.append('entry.1751763089', email);  // Email Address
+            formData.append('entry.711138081', phone);   // Phone Number
+
+            fetch(googleFormURL, {
+                method: 'POST',
+                mode: 'no-cors', // Required for Google Forms
+                body: formData
+            })
+            .then(() => {
+                // Hide form and show success message
+                const successMessage = document.getElementById('successMessage');
+                const detailsSection = document.getElementById('detailsSection');
+                document.getElementById('profileForm').style.display = 'none'; // Hide form
+                successMessage.classList.add('show'); // Show success message
+
+                // Display user details
+                document.getElementById('displayName').textContent = name;
+                document.getElementById('displayEmail').textContent = email;
+                document.getElementById('displayPhone').textContent = phone;
+                detailsSection.classList.add('show'); // Show details section
+
+                // Auto-hide success message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error submitting to Google Form:', error);
+                speak('There was an error saving your profile. Please try again.');
+            });
+        }
+
+        // Submit button functionality
+        document.getElementById('submitButton').addEventListener('click', () => {
+            submitForm();
+        });
+
+        // Restart button functionality
+        document.getElementById('restartButton').addEventListener('click', () => {
+            const detailsSection = document.getElementById('detailsSection');
+            const successMessage = document.getElementById('successMessage');
+            const profileForm = document.getElementById('profileForm');
+
+            // Reset UI
+            detailsSection.classList.remove('show');
+            successMessage.classList.remove('show');
+            profileForm.style.display = 'block'; // Show form again
+            document.getElementById('profileForm').reset(); // Clear form
+
+            // Reset state
+            awaitingSaveCommand = false;
+            currentFieldIndex = 0;
+
+            // Start over
+            speak(fields[0].prompt);
+        });
+    </script>
+</body>
+</html>

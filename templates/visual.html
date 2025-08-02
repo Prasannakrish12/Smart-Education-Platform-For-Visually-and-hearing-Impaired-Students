@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Visually Impaired</title>
+    <style>
+        :root {
+            --bg-start: #1A2A44;
+            --bg-end: #0A1A33;
+            --text: #FFFFFF;
+            --accent: #00D1B2;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            --hover-bg: rgba(255, 255, 255, 0.15);
+            --mic-prompt: #FF6B6B;
+        }
+        body {
+            font-family: 'SF Pro', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text);
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            height: 90%;
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 25px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .instructions {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #D3D3D3;
+            padding: 10px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            animation: fadeUp 1s ease-out 0.5s;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .content {
+            flex-grow: 1;
+            padding: 25px;
+            border-left: 6px solid var(--accent);
+            border-radius: 12px;
+            background: var(--card-bg);
+            overflow-y: auto;
+            animation: pulse 2s infinite;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 var(--accent); }
+            50% { box-shadow: 0 0 20px var(--accent); }
+            100% { box-shadow: 0 0 0 var(--accent); }
+        }
+        .content h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin: 15px 0;
+            transition: color 0.3s ease;
+        }
+        .content h2:hover {
+            color: #00A3A9;
+        }
+        .content p, .content pre {
+            margin: 12px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #E0E7FF;
+        }
+        .content pre {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .mic-prompt {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--mic-prompt);
+            font-size: 1rem;
+            animation: blink 1s infinite;
+            padding: 10px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .container { margin: 10px; padding: 20px; }
+            .content { font-size: 0.9rem; }
+            .mic-prompt { font-size: 0.9rem; }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let currentCourse = '{{ current_course }}' || null;
+        let currentIndex = {{ current_index }} || 0;
+        let totalTopics = 0;
+        let isPolling = true;
+
+        function updateContent(content) {
+            console.log("Updating content:", JSON.stringify(content));
+            if (content && content.title && content.summary) {
+                $('.content').html(`
+                    <h2>${content.title}</h2>
+                    <p><strong>Summary:</strong> ${content.summary}</p>
+                    ${content.example ? `<pre><strong>Example:</strong>\n${content.example}</pre>` : ''}
+                    <p><em>Topic ${currentIndex + 1} of ${totalTopics}</em></p>
+                `);
+                $('.mic-prompt').hide();
+            } else {
+                $('.content').html('<p>Please select a course using voice commands.</p>');
+                $('.mic-prompt').show().text('Say "Python" or "Java" to start.');
+            }
+        }
+
+        $(document).ready(function() {
+            setInterval(function() {
+                if (!isPolling) return;
+                $.get('/api/state', function(response) {
+                    console.log("Polled response:", JSON.stringify(response));
+                    if (response.content && response.content.title && response.content.summary) {
+                        currentCourse = response.course;
+                        currentIndex = response.index;
+                        totalTopics = response.total;
+                        updateContent(response.content);
+                    } else {
+                        isPolling = false; // Stop polling if no course
+                        updateContent(response.content);
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("Failed to fetch state:", textStatus, errorThrown);
+                    $('.mic-prompt').show().text('Server error. Ensure app.py is running.');
+                    isPolling = false;
+                });
+            }, 3000); // Changed to 3 seconds
+            // Initial fetch
+            $.get('/api/state', function(response) {
+                updateContent(response.content);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>AccessLearn - Visually Impaired</h1>
+        <div class="instructions">Say "Python", "Java" to start, then use "Next", "Previous", "Repeat", or "Stop" to navigate.</div>
+        <div class="content">
+            <p>Please select a course using voice commands.</p>
+        </div>
+        <div class="mic-prompt">Say "Python" or "Java" to start.</div>
+    </div>
+</body>
+</html>

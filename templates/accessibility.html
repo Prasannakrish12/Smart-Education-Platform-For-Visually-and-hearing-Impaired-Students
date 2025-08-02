@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Accessibility Options</title>
+    <style>
+        :root { 
+            --bg-start: #0A1D37; 
+            --bg-end: #00C4CC; 
+            --text: #FFF; 
+            --card-bg: rgba(255, 255, 255, 0.1); 
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+            --accent: #00D1B2; 
+        }
+        body { 
+            font-family: 'SF Pro', Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end)); 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow-x: hidden; 
+        }
+        .accessibility-prompt { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(10px); 
+            padding: 40px; 
+            border-radius: 15px; 
+            max-width: 600px; 
+            text-align: center; 
+            box-shadow: var(--shadow); 
+            animation: fadeIn 1.5s ease-out; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .accessibility-prompt h2 { 
+            font-size: 2.5rem; 
+            color: var(--text); 
+            margin-bottom: 20px; 
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+        }
+        .accessibility-prompt p { 
+            font-size: 1.3rem; 
+            color: #E0E7FF; 
+            margin: 10px 0; 
+            line-height: 1.6; 
+        }
+        .accessibility-prompt input { 
+            padding: 15px; 
+            margin: 15px 0; 
+            width: 200px; 
+            border: none; 
+            border-radius: 10px; 
+            background: rgba(255, 255, 255, 0.15); 
+            color: var(--text); 
+            font-size: 1.1rem; 
+        }
+        .accessibility-prompt input::placeholder { 
+            color: #E0E7FF; 
+        }
+        .accessibility-prompt button { 
+            padding: 15px 30px; 
+            margin: 10px; 
+            font-size: 1.2rem; 
+            border: none; 
+            border-radius: 10px; 
+            background: var(--card-bg); 
+            color: var(--text); 
+            backdrop-filter: blur(10px); 
+            cursor: pointer; 
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s; 
+        }
+        .accessibility-prompt button:hover { 
+            transform: scale(1.1); 
+            background: rgba(255, 255, 255, 0.25); 
+            box-shadow: 0 0 15px var(--accent); 
+        }
+        @media (max-width: 800px) { 
+            .accessibility-prompt { padding: 20px; } 
+            .accessibility-prompt h2 { font-size: 2rem; } 
+            .accessibility-prompt p { font-size: 1.1rem; } 
+            .accessibility-prompt input { width: 100%; } 
+        }
+    </style>
+</head>
+<body onload="startVoicePrompt()">
+    <div class="accessibility-prompt" role="alert" aria-live="assertive">
+        <h2>Accessibility Options</h2>
+        <p>Visually impaired? Say "yes" or "no" to the voice prompt.</p>
+        <p>Hearing-impaired? Type or click "Hearing" below.</p>
+        <p>Others, click "Continue" to homepage.</p>
+        <form action="/set_user_type" method="POST">
+            <input type="text" name="user_type" placeholder="Type 'hearing' or 'none'" aria-label="User type input">
+            <button type="submit">Submit</button>
+        </form>
+        <form action="/set_user_type" method="POST">
+            <input type="hidden" name="user_type" value="hearing">
+            <button type="submit">Hearing-Impaired</button>
+        </form>
+        <form action="/set_user_type" method="POST">
+            <input type="hidden" name="user_type" value="none">
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+    <script>
+        function startVoicePrompt() {
+            fetch('/start_voice_prompt')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                })
+                .catch(error => console.error('Error starting voice prompt:', error));
+        }
+    </script>
+</body>
+</html>

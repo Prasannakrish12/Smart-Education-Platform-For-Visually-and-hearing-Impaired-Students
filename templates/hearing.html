@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Hearing Impaired</title>
+    <style>
+        :root {
+            --bg-start: #1A2A44;
+            --bg-end: #0A1A33;
+            --text: #FFFFFF;
+            --accent: #00D1B2;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            --hover-bg: rgba(255, 255, 255, 0.15);
+        }
+        body {
+            font-family: 'SF Pro', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text);
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .container {
+            display: flex;
+            height: 90vh;
+            margin: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar {
+            width: 300px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px 0 0 15px;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 209, 178, 0.5);
+        }
+        .sidebar h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 15px;
+            background: var(--card-bg);
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .sidebar li:hover {
+            background: var(--hover-bg);
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+        .main {
+            flex: 1;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 0 15px 15px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .main h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        .video {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        iframe:hover {
+            transform: scale(1.01);
+        }
+        .buttons {
+            text-align: center;
+            margin-top: auto;
+        }
+        .buttons button {
+            padding: 12px 24px;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .buttons button:hover {
+            transform: scale(1.1);
+            background: #00A3A9;
+            box-shadow: 0 6px 15px rgba(0, 209, 178, 0.5);
+        }
+        .buttons button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        @media (max-width: 800px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; border-radius: 15px 15px 0 0; }
+            .main { border-radius: 0 0 15px 15px; }
+            .video iframe { height: 300px; }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let currentCourse = '';
+        let currentIndex = 0;
+        let currentTopics = {};
+
+        function loadCourse(course) {
+            currentCourse = course;
+            currentIndex = 0;
+            $.getJSON(`/api/course/${course}`, function(data) {
+                currentTopics = data;
+                updateContent();
+            }).fail(function() {
+                $('.video').html('<p style="color: red;">Failed to load course data.</p>');
+            });
+        }
+
+        function updateContent() {
+            if (currentTopics && currentTopics[currentIndex]) {
+                const video = currentTopics[currentIndex];
+                const videoId = video.url.split('?')[0].replace('https://youtu.be/', '');
+                $('.video').html(`
+                    <h2>${video.title}</h2>
+                 <p><strong>Summary:</strong></p>
+                 <p>${video.summary || 'Explore this sign language lesson.'}</p>
+                    <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+                `);
+                $('.buttons button').prop('disabled', false);
+                if (currentIndex === 0) $('#prevBtn').prop('disabled', true);
+                if (currentIndex === currentTopics.length - 1) $('#nextBtn').prop('disabled', true);
+            } else {
+                $('.video').html('<p>No video available for this course.</p>');
+            }
+        }
+
+        $(document).ready(function() {
+            $('.sidebar li').click(function() {
+                loadCourse($(this).data('course'));
+            });
+
+            $('.buttons button#prevBtn').click(function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateContent();
+                }
+            });
+
+            $('.buttons button#nextBtn').click(function() {
+                if (currentIndex < (currentTopics.length || 0) - 1) {
+                    currentIndex++;
+                    updateContent();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Courses</h3>
+            <ul>
+                <li data-course="Learn Sign Language">Learn Sign Language</li>
+                <li data-course="Indian sign language with Tamil words">Indian Sign Language with Tamil</li>
+                <li data-course="English Grammar">English Grammar</li>
+            </ul>
+        </div>
+        <div class="main">
+            <h1>AccessLearn - Hearing Impaired</h1>
+            <div class="video"></div>
+            <div class="buttons">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

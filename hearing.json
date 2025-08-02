@@ -1,0 +1,37 @@
+{
+    "Learn Sign Language": [
+        { "title": "Introduction", "url": "https://youtu.be/JPV-vboWfhY?si=61xmU5yQs1ECPnCi", "summary": "An overview of sign language fundamentals." },
+        { "title": "Alphabet", "url": "https://youtu.be/qcdivQfA41Y?si=00wM8rELmejAOZPt", "summary": "Master the sign language alphabet." },
+        { "title": "Numbers", "url": "https://youtu.be/vnH2BmcSRMA?si=3lFykWxUBRLyoqwo", "summary": "Learn to sign numbers 1-100." },
+        { "title": "Basic Words 1", "url": "https://youtu.be/VtbYvVDItvg?si=b_05REHn5QPg6ENf", "summary": "Common daily use words in sign." },
+        { "title": "Basic Words 2", "url": "https://youtu.be/lffGJ29IhZQ?si=aViZmnP6-KIZkGXY", "summary": "Expand vocabulary with more signs." },
+        { "title": "Question Words", "url": "https://youtu.be/DOFPRw6Epl0?si=sECsVOBlOCCyLWfu", "summary": "Sign questions like 'who' and 'what'." },
+        { "title": "Colours", "url": "https://youtu.be/qtrBGmioR2Q?si=RAmkecHp6_Wb9Ol1", "summary": "Learn to sign different colors." },
+        { "title": "Relations", "url": "https://youtu.be/XPRtZQSKL-4?si=JaSgH4rcjUBf0jRz", "summary": "Sign family and relationship terms." },
+        { "title": "Days of the Week", "url": "https://youtu.be/XPRtZQSKL-4?si=HRDKbMSreJTOb78g", "summary": "Sign all days of the week." },
+        { "title": "Months", "url": "https://youtu.be/x58C6-ZtW_8?si=9zRSKQwZqRopZykQ", "summary": "Learn to sign all months." },
+        { "title": "Basic Words 3", "url": "https://youtu.be/bIkHfFlu4VU?si=XIqreTr_E1mSR939", "summary": "Advanced daily use vocabulary." },
+        { "title": "Standard Signs", "url": "https://youtu.be/-Eh3ktA52jw?si=s6XKVvg8QXPUEXzC", "summary": "Common standardized signs." },
+        { "title": "Courses in ISL", "url": "https://youtu.be/ZE7EFgd0IWs?si=V2chtcRev_EkFJ7X", "summary": "Explore Indian Sign Language courses." },
+        { "title": "Greetings", "url": "https://youtu.be/fakeURL1", "summary": "Learn greeting signs like 'hello' and 'thank you'." },
+        { "title": "Emotions", "url": "https://youtu.be/fakeURL2", "summary": "Sign emotions like happy and sad." }
+    ],
+    "Indian sign language with Tamil words": [
+        { "title": "Basic 24 Words (Part-I)", "url": "https://youtu.be/IEvC2ho35aQ?si=K8z48V2C2cKUi3Yo", "summary": "Introduction to 24 basic Tamil signs." },
+        { "title": "Basic Words (Part-II)", "url": "https://youtu.be/K63GHTSMs0k?si=ezc0FDTPUx8CpG2n", "summary": "Additional Tamil sign vocabulary." },
+        { "title": "Tamil Numbers", "url": "https://youtu.be/fakeURL3", "summary": "Sign Tamil numbers 1-50." },
+        { "title": "Tamil Phrases", "url": "https://youtu.be/fakeURL4", "summary": "Common Tamil phrases in sign." }
+    ],
+    "English Grammar": [
+        { "title": "Unit-I", "url": "https://youtu.be/8IUumfbEk_I?si=ZNUh7QDG4Rw2dNud", "summary": "Basics of English grammar structure." },
+        { "title": "Unit-II", "url": "https://youtu.be/PI7P0HqRKng?si=yQObBe6w0B4I3zC", "summary": "Nouns and pronouns." },
+        { "title": "Unit-III", "url": "https://youtu.be/PI7P0HqRKng?si=Ayc5_sqRPkjgvMs4", "summary": "Verbs and tenses." },
+        { "title": "Unit-IV", "url": "https://youtu.be/XErvyQrlllE?si=bZVhjLRJBwT_-o0n", "summary": "Adjectives and adverbs." },
+        { "title": "Unit-V", "url": "https://youtu.be/Z0N1gvcS0Hs?si=_Solq8cfgztljRnn", "summary": "Prepositions and conjunctions." },
+        { "title": "Unit-VI", "url": "https://youtu.be/PnUE7ND58cU?si=29Ji-hZJLgXxkHQQ", "summary": "Sentence structure." },
+        { "title": "Unit-VII", "url": "https://youtu.be/z27izBjqzHQ?si=YCN9mzhrlfH5f-V5", "summary": "Punctuation rules." },
+        { "title": "Unit-VIII", "url": "https://youtu.be/E4LzpboxB6Y?si=wjcLkTJtd6otseUb", "summary": "Advanced grammar concepts." },
+        { "title": "Unit-IX", "url": "https://youtu.be/OeZJMqT5rXs?si=MtFdjAIyMztDZY5y", "summary": "Grammar in context." },
+        { "title": "Unit-X", "url": "https://youtu.be/fakeURL5", "summary": "Practical grammar exercises." }
+    ]
+}

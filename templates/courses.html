@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Courses</title>
+    <style>
+        :root { --bg: #1A2A44; --text: #FFF; --accent: #00D1B2; --card: rgba(255, 255, 255, 0.1); --shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
+        body { font-family: 'SF Pro', Arial, sans-serif; background: linear-gradient(135deg, #1A2A44, #0A1A33); color: var(--text); padding: 20px; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px; background: var(--card); border-radius: 15px; box-shadow: var(--shadow); animation: fadeIn 1.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        h1 { font-size: 3rem; text-align: center; color: var(--accent); margin-bottom: 40px; animation: slideDown 1s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .category { margin-bottom: 50px; }
+        h2 { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+        ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        li { background: var(--card); padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+        li:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 209, 178, 0.5); }
+        li a { color: var(--text); text-decoration: none; font-size: 1.3rem; }
+        @media (max-width: 800px) { h1 { font-size: 2.5rem; } .container { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AccessLearn - Courses</h1>
+        <div class="category">
+            <h2>Visually Impaired</h2>
+            <ul>
+                <li><a href="/visually">Python Programming</a></li>
+                <li><a href="/visually">Java Fundamentals</a></li>
+                <li><a href="/visually">JavaScript Basics</a></li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Hearing Impaired</h2>
+            <ul>
+                <li><a href="/hearing">Sign Language Basics</a></li>
+                <li><a href="/hearing">American Sign Language</a></li>
+                <li><a href="/hearing">British Sign Language</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessLearn - Contact</title>
+    <style>
+        :root { --bg: #1A2A44; --text: #FFF; --accent: #00D1B2; --card: rgba(255, 255, 255, 0.1); --shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
+        body { font-family: 'SF Pro', Arial, sans-serif; background: linear-gradient(135deg, #1A2A44, #0A1A33); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background: var(--card); padding: 40px; border-radius: 15px; box-shadow: var(--shadow); max-width: 500px; width: 90%; animation: fadeIn 1.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        h1 { font-size: 2.5rem; color: var(--accent); text-align: center; margin-bottom: 30px; }
+        form { display: flex; flex-direction: column; gap: 20px; }
+        input, textarea { padding: 12px; border: none; border-radius: 5px; background: rgba(255, 255, 255, 0.2); color: var(--text); font-size: 1.1rem; }
+        button { padding: 12px; border: none; border-radius: 5px; background: var(--accent); color: var(--text); font-size: 1.1rem; cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        button:hover { background: #00A3A9; transform: scale(1.05); }
+        p { color: var(--accent); text-align: center; font-size: 1.1rem; }
+        @media (max-width: 600px) { .container { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AccessLearn - Contact Us</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            <form method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
