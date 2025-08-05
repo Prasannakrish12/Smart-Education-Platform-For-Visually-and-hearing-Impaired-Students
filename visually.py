@@ -13,9 +13,9 @@ except ImportError:
     print("NSSpeechSynthesizer not available, falling back to pyttsx3")
 
 # Load course data
-with open("project R/visual.json", "r") as f:
+with open("/Users/prasannas/Desktop/vs/project R/visual.json", "r") as f:
     course_data = json.load(f)
-print("Course data loaded successfully from project R/visual.json")
+print("Course data loaded successfully from /Users/prasannas/Desktop/vs/project R/visual.json")
 
 # Initialize speech recognition
 recognizer = sr.Recognizer()

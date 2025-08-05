@@ -4,7 +4,7 @@ import webbrowser
 import json
 
 # Set the path to the JSON file
-JSON_FILE_PATH = "project R/hearing.json"
+JSON_FILE_PATH = "hearing.json"
 
 # Load course data from the JSON file
 try:
